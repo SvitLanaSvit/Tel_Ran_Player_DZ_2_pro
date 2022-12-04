@@ -30,6 +30,7 @@ public class Main {
         Game.printPlayers(junior);
         Game.printPlayers(middle);
         Game.printPlayers(senior);
+        System.out.println("---------------------------------------------------");
 
         System.out.println("\n-------------------SECOND LEVEL--------------------");
         game.makeGame(junior);
@@ -47,5 +48,6 @@ public class Main {
         Game.printPlayers(junior);
         Game.printPlayers(middle);
         Game.printPlayers(senior);
+        System.out.println("---------------------------------------------------");
     }
 }
