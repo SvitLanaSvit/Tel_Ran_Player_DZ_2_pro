@@ -21,14 +21,14 @@ public class Player {
 
     }
 
-    public Player(UUID id, String name, String surname, int age, League league) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.score = 0;
-        this.league = league;
-    }
+//    public Player(UUID id, String name, String surname, int age, League league) {
+//        this.id = id;
+//        this.name = name;
+//        this.surname = surname;
+//        this.age = age;
+//        this.score = 0;
+//        this.league = league;
+//    }
 
     public void addScore(int val){
         score += val;

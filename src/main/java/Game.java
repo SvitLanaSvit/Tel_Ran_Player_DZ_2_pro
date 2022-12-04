@@ -13,7 +13,6 @@ public class Game {
         }
     }
 
-    //return 3 top player!!!!
     public void makeGame(List<Player> players){
         for(int k = 0; k < 5; k++){
             for (int i = 0; i < players.size() - 1; i++){
