@@ -2,9 +2,11 @@ import java.util.*;
 
 public class ResultOfGameService {
     public static void showTopPlayerIntoLeague(List<Player> players){
+        System.out.println("--------------------TOP---------------------------");
         List<Player> bestTopThree = new ArrayList<>();
         bestTopThree.add(players.get(0));
         Game.printPlayers(bestTopThree);
+        System.out.println("--------------------------------------------------");
     }
 
     private static List<Player> getWorstPlayers(List<Player> players){
@@ -13,6 +15,16 @@ public class ResultOfGameService {
         for(int i = players.size() - 1; i > players.size() - 4; i--) {
             worstPlayers.add(it.previous());
         }
+
+//        ListIterator<Player> item = players.listIterator(players.size());
+//        int count = 0;
+//        while(item.hasPrevious() && count < 3){
+//            Player player = item.previous();
+//            System.out.println(player);
+//            if(player.getLeague() == League.JUNIOR)
+//                item.remove();
+//            count++;
+//        }
 
         int last = players.size() - 1;
         if(players.get(last).getLeague() != League.JUNIOR)

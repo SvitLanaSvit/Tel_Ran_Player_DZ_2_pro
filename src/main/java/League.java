@@ -1,5 +1,6 @@
 public enum League {
     JUNIOR,
     MIDDLE,
-    SENIOR
+    SENIOR,
+    UNDEFINED
 }

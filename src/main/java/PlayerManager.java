@@ -1,13 +1,16 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class PlayerManager {
-    private List<Player> players;
+    private Map<League, List<Player>> mapOfPlayers;
+    private Set<UUID> uuids;
     static PlayerManager pm = null;
 
     private PlayerManager() {
-        players = new ArrayList<>();
+        mapOfPlayers = new HashMap<>();
+        uuids = new HashSet<>();
+        for (League l : League.values()) {
+            mapOfPlayers.put(l, new ArrayList<>());
+        }
     }
 
     public static PlayerManager getInstance(){
@@ -15,36 +18,58 @@ public class PlayerManager {
             pm = new PlayerManager();
         return pm;
     }
-
+    //change methode, player must add as key/value
     public boolean addIntoListPlayer(Player player){
-        for (Player p : players) {
-            if(p.getId().equals(player.getId()))
-                return false;
+        Boolean res = false;
+        if(!uuids.contains(player.getId())){
+            League league = assignLeague(player);
+            if(league != League.UNDEFINED){
+                List<Player> players =  mapOfPlayers.get(league);
+                players.add(player);
+                uuids.add(player.getId());
+                res = true;
+            }
         }
-        if(assignLeague(player))
-            players.add(player);
-        return true;
+        return res;
     }
 
-    public boolean assignLeague(Player p){
-        boolean res = true;
-        if(p.getAge() >= 15 && p.getAge() <= 17)
+    private League assignLeague(Player p){
+        League res = League.UNDEFINED;
+        if(p.getAge() >= 15 && p.getAge() <= 17) {
             p.setLeague(League.JUNIOR);
-        else if(p.getAge() >= 18 && p.getAge() <= 25)
+            res = League.JUNIOR;
+        }
+        else if(p.getAge() >= 18 && p.getAge() <= 25){
             p.setLeague(League.MIDDLE);
-        else if(p.getAge() >= 26 && p.getAge() <= 40)
+            res = League.MIDDLE;
+        }
+        else if(p.getAge() >= 26 && p.getAge() <= 40){
             p.setLeague(League.SENIOR);
-        else res = false;
+            res = League.SENIOR;
+        }
         return res;
     }
 
     public List<Player> getPlayersByLeague(League league){
-        List<Player> playersListByLeague = new LinkedList<>();
-        for (Player p: players) {
-            if(p.getLeague().equals(league)){
-                playersListByLeague.add(p);
+        return new LinkedList<>(mapOfPlayers.get(league));
+    }
+
+    public boolean changeLeague(Player player, League newLeague){
+        boolean res = false;
+        if(!player.getLeague().equals(newLeague)) {
+            List<Player> playersOldLeague = mapOfPlayers.get(player.getLeague());
+            List<Player> playersNewLeague = mapOfPlayers.get(newLeague);
+            Iterator<Player> it = playersOldLeague .iterator();
+            while (it.hasNext() && !res) {
+                Player p = it.next();
+                if (p.getId().equals(player.getId())) {
+                    it.remove();
+                    playersNewLeague.add(player);
+                    res = true;
+                }
             }
+
         }
-        return playersListByLeague;
+        return  res;
     }
 }

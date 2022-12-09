@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Game {
 
@@ -39,5 +36,10 @@ public class Game {
         if(Math.random() > 0.5)
             p2.addScore(1);
         else p1.addScore(1);
+    }
+
+    public void movePlayersBetweenLeague(Map<League, List<Player>> map){
+        //Iterates via map from each League take 3 beste players
+        //and reassign league in using playerManager function with changeLeague function
     }
 }
