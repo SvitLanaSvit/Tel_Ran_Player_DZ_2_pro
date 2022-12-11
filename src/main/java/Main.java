@@ -7,7 +7,7 @@ public class Main {
         Map<League, List<Player>> leagueListMap = new HashMap<>();
         Game game = new Game();
         String name = "NAME", surname = "SURNAME", age = "AGE", score = "SCORE", league = "LEAGUE";
-        System.out.println(String.format("%5s %18s %10s %6s %7s", name, surname,age,score,league));
+        System.out.printf("%5s %18s %10s %6s %7s%n", name, surname,age,score,league);
         System.out.println("--------------------------------------------------");
 
         Generator.createPlayerJunior();

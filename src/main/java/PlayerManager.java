@@ -68,7 +68,6 @@ public class PlayerManager {
                     res = true;
                 }
             }
-
         }
         return  res;
     }
