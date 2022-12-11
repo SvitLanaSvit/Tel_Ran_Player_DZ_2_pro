@@ -105,4 +105,31 @@ public class ResultOfGameService {
             }
         }
     }
+
+    public static HashMap<League, List<Player>> putResultIntoMap(List<Player> playersSenior,
+                                                                 List<Player> playersMiddle,
+                                                                 List<Player> playersJunior){
+        HashMap<League, List<Player>> map = new HashMap<>();
+        map.put(getLeague(playersSenior), playersSenior);
+        map.put(getLeague(playersMiddle), playersMiddle);
+        map.put(getLeague(playersJunior), playersJunior);
+        return map;
+    }
+
+    private static League getLeague(List<Player> list){
+        Iterator<Player> it = list.iterator();
+        return it.next().getLeague();
+    }
+
+    public static void showMap(HashMap<League, List<Player>> map){
+        System.out.println("----------------RESULT FROM MAP-------------------");
+        for (Map.Entry<League, List<Player>> m : map.entrySet()){
+            List<Player> players = m.getValue();
+            System.out.println("-------------------" + m.getKey() + "-------------------------");
+            for (Player p : players) {
+                System.out.println(String.format("%-15s %-15s %-5d %-5d %-10s",
+                        p.getName(), p.getSurname(), p.getAge(), p.getScore(), p.getLeague()));
+            }
+        }
+    }
 }

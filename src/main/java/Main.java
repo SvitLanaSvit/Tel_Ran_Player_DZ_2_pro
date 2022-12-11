@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 
 public class Main {
@@ -49,5 +50,9 @@ public class Main {
         Game.printPlayers(middle);
         Game.printPlayers(senior);
         System.out.println("---------------------------------------------------");
+
+        HashMap<League, List<Player>> map =  ResultOfGameService.putResultIntoMap(senior,middle,junior);
+        ResultOfGameService.showMap(map);
+
     }
 }
