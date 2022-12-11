@@ -20,7 +20,7 @@ public class PlayerManager {
     }
     //change methode, player must add as key/value
     public boolean addIntoListPlayer(Player player){
-        Boolean res = false;
+        boolean res = false;
         if(!uuids.contains(player.getId())){
             League league = assignLeague(player);
             if(league != League.UNDEFINED){
